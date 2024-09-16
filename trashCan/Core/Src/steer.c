@@ -1,10 +1,11 @@
 #include "steer.h"
 #include "trashCanConfig.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include "log.h"
 
-static uint32_t CCR_once_Degree = (2.5-0.5)/20*TIM4ARR/180; 
-
+static uint32_t CCR_once_Degree = 0; 
+static uint32_t CCR_zero = 0;
 
 Steer* steerCreate(TIM_HandleTypeDef* tim,uint32_t chan,uint16_t degr)
 {
@@ -14,21 +15,23 @@ Steer* steerCreate(TIM_HandleTypeDef* tim,uint32_t chan,uint16_t degr)
     st->channel=chan;
     st->degree = degr;
     st->CCRVal = degr*CCR_once_Degree; 
-    st->init= init;
     st->setDegree=setDegree;
     LOG(HAL_TIM_PWM_Start(st->timHandle,st->channel)==HAL_OK);
     __HAL_TIM_SET_COMPARE(st->timHandle,st->channel,st->CCRVal);
     return st;
 }
 
-void init(void)
+void steerInit(void)
 {
-    
+    //(2.5-0.5)/20*TIM4ARR/180 -> TIM4ARR/1800
+    CCR_once_Degree = TIM4ARR/1800;
+    //0.5/20*TIM4ARR -> 0.025* TIM4ARR
+    CCR_zero =  0.025* TIM4ARR;
 }
 
 void setDegree(Steer*st , uint16_t value)
 {
     if(value>180)   value=180;
-    st->CCRVal = value *CCR_once_Degree;
+    st->CCRVal = value *CCR_once_Degree+CCR_zero;
     __HAL_TIM_SET_COMPARE(st->timHandle,st->channel,st->CCRVal);
 }

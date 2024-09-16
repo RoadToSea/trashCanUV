@@ -90,7 +90,10 @@ int main(void)
   MX_TIM4_Init();
   MX_TIM5_Init();
   /* USER CODE BEGIN 2 */
-  Steer* steer = steerCreate(&htim4,TIM_CHANNEL_1,0);
+  steerInit();
+  Steer* steer1 = steerCreate(&htim4,TIM_CHANNEL_1,0);
+	Steer* steer2 = steerCreate(&htim4,TIM_CHANNEL_2,0);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -100,6 +103,18 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+    for(int i=0;i<180;i+=5)
+    {
+      setDegree(steer1,i);
+			setDegree(steer2,i);
+      HAL_Delay(300);
+    }
+    for(int i=180;i>0;i-=5)
+    {
+			setDegree(steer1,i);
+      setDegree(steer2,i);
+      HAL_Delay(300);
+    }
   }
   /* USER CODE END 3 */
 }

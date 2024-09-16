@@ -11,7 +11,6 @@ typedef struct steer{
 	uint32_t 						channel;
 	uint16_t						CCRVal;
 	uint16_t                         degree;
-    void(*init)(void);
     void(*setDegree)(struct steer*,uint16_t);
 }Steer;
 
@@ -25,7 +24,7 @@ Steer* steerCreate(TIM_HandleTypeDef* tim,uint32_t chan,uint16_t degr);
 /// @brief 
 /// 初始化舵机的定时器和pwm通道
 /// @param  
-void init(void);
+void steerInit(void);
 
 /// @brief 
 /// 控制舵机偏转角度
