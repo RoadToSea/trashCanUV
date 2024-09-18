@@ -9,6 +9,12 @@
 #define TIM4ARR     20000
 
 
+enum trash{
+    Recycle,
+    NonRecycle,
+    Kitchen,
+    Other
+};
 
 
 #endif
