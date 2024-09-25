@@ -1,0 +1,15 @@
+trashcan\timers.o: ../Middlewares/Third_Party/FreeRTOS/Source/timers.c
+trashcan\timers.o: D:\keil5\ARM\ARMCC\Bin\..\include\stdlib.h
+trashcan\timers.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
+trashcan\timers.o: D:\keil5\ARM\ARMCC\Bin\..\include\stddef.h
+trashcan\timers.o: D:\keil5\ARM\ARMCC\Bin\..\include\stdint.h
+trashcan\timers.o: ../Core/Inc/FreeRTOSConfig.h
+trashcan\timers.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
+trashcan\timers.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h
+trashcan\timers.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h
+trashcan\timers.o: ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F/portmacro.h
+trashcan\timers.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h
+trashcan\timers.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h
+trashcan\timers.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
+trashcan\timers.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h
+trashcan\timers.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h

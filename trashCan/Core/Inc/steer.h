@@ -31,6 +31,8 @@ void steerInit(void);
 /// @param value: 偏转角度 
 void setDegree(Steer*st ,uint16_t value);
 
-
+extern Steer* top;
+extern Steer* bottom;
+extern Steer* around;
 
 #endif

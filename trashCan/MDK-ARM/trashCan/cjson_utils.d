@@ -1,0 +1,11 @@
+trashcan\cjson_utils.o: ..\Core\Src\cJSON_Utils.c
+trashcan\cjson_utils.o: D:\keil5\ARM\ARMCC\Bin\..\include\ctype.h
+trashcan\cjson_utils.o: D:\keil5\ARM\ARMCC\Bin\..\include\string.h
+trashcan\cjson_utils.o: D:\keil5\ARM\ARMCC\Bin\..\include\stdlib.h
+trashcan\cjson_utils.o: D:\keil5\ARM\ARMCC\Bin\..\include\stdio.h
+trashcan\cjson_utils.o: D:\keil5\ARM\ARMCC\Bin\..\include\limits.h
+trashcan\cjson_utils.o: D:\keil5\ARM\ARMCC\Bin\..\include\math.h
+trashcan\cjson_utils.o: D:\keil5\ARM\ARMCC\Bin\..\include\float.h
+trashcan\cjson_utils.o: ../Core/Inc/cJSON_Utils.h
+trashcan\cjson_utils.o: ../Core/Inc/cJSON.h
+trashcan\cjson_utils.o: D:\keil5\ARM\ARMCC\Bin\..\include\stddef.h

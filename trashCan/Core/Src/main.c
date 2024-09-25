@@ -18,12 +18,17 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "cmsis_os.h"
 #include "tim.h"
+#include "usart.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include <stdio.h>
 #include "steer.h"
+#include "connect.h"
+#include "SR04.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -49,6 +54,7 @@
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
+void MX_FREERTOS_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -89,12 +95,29 @@ int main(void)
   MX_GPIO_Init();
   MX_TIM4_Init();
   MX_TIM5_Init();
+  MX_UART7_Init();
+  MX_UART8_Init();
+  MX_TIM8_Init();
   /* USER CODE BEGIN 2 */
-  steerInit();
-  Steer* steer1 = steerCreate(&htim4,TIM_CHANNEL_1,0);
-	Steer* steer2 = steerCreate(&htim4,TIM_CHANNEL_2,0);
-
+  SR04_init();
+//  steerInit();
+//  Steer* steer1 = steerCreate(&htim4,TIM_CHANNEL_1,0);
+//	Steer* steer2 = steerCreate(&htim4,TIM_CHANNEL_2,0);
+  connectInit(&huart8);
+  transportInfo info;
+  printf("receive start\n");
   /* USER CODE END 2 */
+
+  /* Init scheduler */
+  osKernelInitialize();
+
+  /* Call init function for freertos objects (in cmsis_os2.c) */
+  MX_FREERTOS_Init();
+
+  /* Start scheduler */
+  osKernelStart();
+
+  /* We should never get here as control is now taken by the scheduler */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
@@ -103,18 +126,9 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    for(int i=0;i<180;i+=5)
-    {
-      setDegree(steer1,i);
-			setDegree(steer2,i);
-      HAL_Delay(300);
-    }
-    for(int i=180;i>0;i-=5)
-    {
-			setDegree(steer1,i);
-      setDegree(steer2,i);
-      HAL_Delay(300);
-    }
+    
+    // if(receive(&info)==HAL_OK)
+    //   printf("kind:%d\ncoordX:%d\ncoordY:%d\n\n",info.kind,info.coordX,info.coordY);
   }
   /* USER CODE END 3 */
 }
@@ -173,8 +187,34 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-
+int fputc(int ch, FILE *f)
+{
+  uint8_t c = ch;
+  HAL_UART_Transmit(&huart8,&c,1,0xff);
+  return c;
+}
 /* USER CODE END 4 */
+
+/**
+  * @brief  Period elapsed callback in non blocking mode
+  * @note   This function is called  when TIM1 interrupt took place, inside
+  * HAL_TIM_IRQHandler(). It makes a direct call to HAL_IncTick() to increment
+  * a global variable "uwTick" used as application time base.
+  * @param  htim : TIM handle
+  * @retval None
+  */
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+  /* USER CODE BEGIN Callback 0 */
+
+  /* USER CODE END Callback 0 */
+  if (htim->Instance == TIM1) {
+    HAL_IncTick();
+  }
+  /* USER CODE BEGIN Callback 1 */
+
+  /* USER CODE END Callback 1 */
+}
 
 /**
   * @brief  This function is executed in case of error occurrence.

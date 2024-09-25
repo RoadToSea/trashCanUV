@@ -1,0 +1,15 @@
+trashcan\event_groups.o: ../Middlewares/Third_Party/FreeRTOS/Source/event_groups.c
+trashcan\event_groups.o: D:\keil5\ARM\ARMCC\Bin\..\include\stdlib.h
+trashcan\event_groups.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
+trashcan\event_groups.o: D:\keil5\ARM\ARMCC\Bin\..\include\stddef.h
+trashcan\event_groups.o: D:\keil5\ARM\ARMCC\Bin\..\include\stdint.h
+trashcan\event_groups.o: ../Core/Inc/FreeRTOSConfig.h
+trashcan\event_groups.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
+trashcan\event_groups.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h
+trashcan\event_groups.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h
+trashcan\event_groups.o: ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F/portmacro.h
+trashcan\event_groups.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h
+trashcan\event_groups.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h
+trashcan\event_groups.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
+trashcan\event_groups.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h
+trashcan\event_groups.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h
