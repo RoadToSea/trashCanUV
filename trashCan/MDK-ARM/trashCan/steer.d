@@ -33,7 +33,9 @@ trashcan\steer.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 trashcan\steer.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 trashcan\steer.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 trashcan\steer.o: ../Core/Inc/trashCanConfig.h
+trashcan\steer.o: ../Core/Inc/main.h
 trashcan\steer.o: D:\keil5\ARM\ARMCC\Bin\..\include\stdio.h
 trashcan\steer.o: D:\keil5\ARM\ARMCC\Bin\..\include\stdlib.h
 trashcan\steer.o: ../Core/Inc/log.h
 trashcan\steer.o: ../Core/Inc/tim.h
+trashcan\steer.o: ../Core/Inc/control.h

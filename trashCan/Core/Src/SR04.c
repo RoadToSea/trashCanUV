@@ -3,6 +3,7 @@
 #include "log.h"
 #include "tim.h"
 #include "trashCanConfig.h"
+#include "FreeRTOS.h"
 
 uint32_t timeCount = 0;
 uint8_t  flag =0 ;//上升沿下降沿标志  0:上升沿  1:下降沿
@@ -30,10 +31,10 @@ void SR04_init(void)
     kitchen->gpio=GPIO_PIN_6;
     other->gpio=GPIO_PIN_2;
 
-    recycle->tim =&htim8;
-    harmful->tim =&htim8;
-    kitchen->tim =&htim8;
-    other->tim =&htim8;
+    recycle->tim =&htim3;
+    harmful->tim =&htim3;
+    kitchen->tim =&htim3;
+    other->tim =&htim3;
 }
 
 //距离公式:
@@ -58,14 +59,14 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
     if(flag == 0)
     {
-        __HAL_TIM_SET_COUNTER(&htim8,0);
-        HAL_TIM_Base_Start(&htim8);
+        __HAL_TIM_SET_COUNTER(&htim3,0);
+        HAL_TIM_Base_Start(&htim3);
         flag=1;    
     }
     else if(flag ==1)
     {
-        timeCount = __HAL_TIM_GET_COUNTER(&htim8);
-        HAL_TIM_Base_Stop(&htim8);
+        timeCount = __HAL_TIM_GET_COUNTER(&htim3);
+        HAL_TIM_Base_Stop(&htim3);
         flag = 0;
     }
 }

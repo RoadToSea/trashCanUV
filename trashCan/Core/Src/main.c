@@ -29,6 +29,8 @@
 #include "steer.h"
 #include "connect.h"
 #include "SR04.h"
+#include "control.h"
+#include "motor.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -61,7 +63,7 @@ void MX_FREERTOS_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+transportInfo info;
 /* USER CODE END 0 */
 
 /**
@@ -98,14 +100,22 @@ int main(void)
   MX_UART7_Init();
   MX_UART8_Init();
   MX_TIM8_Init();
+  MX_TIM2_Init();
+  MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
   SR04_init();
-//  steerInit();
-//  Steer* steer1 = steerCreate(&htim4,TIM_CHANNEL_1,0);
-//	Steer* steer2 = steerCreate(&htim4,TIM_CHANNEL_2,0);
   connectInit(&huart8);
-  transportInfo info;
   printf("receive start\n");
+  steerInit();
+	motorStart();
+	//HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_1);
+	__HAL_TIM_SetAutoreload(&htim2,5000);
+	__HAL_TIM_SetCompare(&htim2,TIM_CHANNEL_1,2500);
+	motorMove(100000000,1000);
+
+//	setDegree(top,cloudSteerZero);
+//  setDegree(bottom,cloudSteerZero);
+	
   /* USER CODE END 2 */
 
   /* Init scheduler */

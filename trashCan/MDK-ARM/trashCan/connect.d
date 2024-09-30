@@ -33,6 +33,7 @@ trashcan\connect.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
 trashcan\connect.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 trashcan\connect.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 trashcan\connect.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
+trashcan\connect.o: ../Core/Inc/trashCanConfig.h
 trashcan\connect.o: ../Core/Inc/gpio.h
 trashcan\connect.o: D:\keil5\ARM\ARMCC\Bin\..\include\stdlib.h
 trashcan\connect.o: D:\keil5\ARM\ARMCC\Bin\..\include\string.h

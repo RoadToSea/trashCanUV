@@ -40,12 +40,15 @@ trashcan\freertos.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
 trashcan\freertos.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 trashcan\freertos.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 trashcan\freertos.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
+trashcan\freertos.o: ../Core/Inc/trashCanConfig.h
+trashcan\freertos.o: ../Core/Inc/main.h
 trashcan\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os.h
 trashcan\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h
+trashcan\freertos.o: ../Core/Inc/tim.h
 trashcan\freertos.o: ../Core/Inc/SR04.h
 trashcan\freertos.o: ../Core/Inc/steer.h
 trashcan\freertos.o: ../Core/Inc/connect.h
-trashcan\freertos.o: ../Core/Inc/trashCanConfig.h
 trashcan\freertos.o: ../Core/Inc/control.h
 trashcan\freertos.o: D:\keil5\ARM\ARMCC\Bin\..\include\stdio.h
 trashcan\freertos.o: D:\keil5\ARM\ARMCC\Bin\..\include\stdlib.h
+trashcan\freertos.o: ../Core/Inc/usart.h

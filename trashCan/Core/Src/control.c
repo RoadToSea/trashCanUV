@@ -3,19 +3,9 @@
 #include "FreeRTOS.h"
 #include "SR04.h"
 #include "task.h"
+#include "tim.h"
 
 
-
-//延时时间,(ms)
-#define delay_time      500
-
-void dumpReset(Steer *top, Steer *bottom)
-{
-    setDegree(top,cloudSteerZero);
-    setDegree(bottom,cloudSteerZero);
-    vTaskDelay(300);
-    setDegree(around,aroundSteerZero);
-}
 
 
 void dumpTrash( transportInfo *info)
@@ -25,36 +15,35 @@ void dumpTrash( transportInfo *info)
     {
     case Recycle:
         /* code */
-        setDegree(bottom,cloudSteerZero-45);
-        vTaskDelay(delay_time);
-        setDegree(top,cloudSteerZero+30);
-        vTaskDelay(delay_time);
-        dumpReset(top,bottom);
+        setDegree(bottom,cloudSteerZero-bottomIncline);
+        setDegree(top,cloudSteerZero+topIncline);
+
         break;
     case Harmful:
-        setDegree(bottom,cloudSteerZero+45);
-        vTaskDelay(delay_time);
-        setDegree(top,cloudSteerZero+30);
-        vTaskDelay(delay_time);
-        dumpReset(top,bottom);
+        setDegree(bottom,cloudSteerZero+bottomIncline);
+        setDegree(top,cloudSteerZero-topIncline);
+
         break;
     case Kitchen:
-        setDegree(bottom,cloudSteerZero-45);
-        vTaskDelay(delay_time);
-        setDegree(top,cloudSteerZero-30);
-        vTaskDelay(delay_time);
-        dumpReset(top,bottom);
+        setDegree(bottom,cloudSteerZero-bottomIncline);
+        setDegree(top,cloudSteerZero-topIncline);
+
         break;
     case Other:
-        setDegree(bottom,cloudSteerZero+45);
-        vTaskDelay(delay_time);
-        setDegree(top,cloudSteerZero-30);
-        vTaskDelay(delay_time);
-        dumpReset(top,bottom);
+        setDegree(bottom,cloudSteerZero+bottomIncline);
+        setDegree(top,cloudSteerZero+topIncline);
+
         break;
     default:
         break;
     }
+}
+
+void dumpReset(Steer *top, Steer *bottom)
+{
+    setDegree(top,cloudSteerZero);
+    setDegree(bottom,cloudSteerZero);
+    setDegree(around,aroundSteerZero);
 }
 
 

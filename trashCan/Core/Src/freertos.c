@@ -25,6 +25,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "tim.h"
 #include "SR04.h"
 #include "steer.h"
 #include "connect.h"
@@ -32,6 +33,8 @@
 #include <stdio.h>
 #include "trashCanConfig.h"
 #include <stdlib.h>
+#include "control.h"
+#include "usart.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -46,14 +49,14 @@
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-
+extern transportInfo info;
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
-//存放识别到的垃圾种类和垃圾坐�???
+//存放识别到的垃圾种类和垃圾坐�?????
 transportInfo* Info;
-//垃圾桶是否满�???
+//垃圾桶是否满�?????
 uint8_t  Detection;
 /* USER CODE END Variables */
 /* Definitions for defaultTask */
@@ -70,6 +73,13 @@ const osThreadAttr_t cloudPlatform_attributes = {
   .stack_size = 128 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
+/* Definitions for pawlTask */
+osThreadId_t pawlTaskHandle;
+const osThreadAttr_t pawlTask_attributes = {
+  .name = "pawlTask",
+  .stack_size = 128 * 4,
+  .priority = (osPriority_t) osPriorityNormal,
+};
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -78,6 +88,7 @@ const osThreadAttr_t cloudPlatform_attributes = {
 
 void StartDefaultTask(void *argument);
 void StartTask02(void *argument);
+void StartTask03(void *argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -114,6 +125,9 @@ void MX_FREERTOS_Init(void) {
   /* creation of cloudPlatform */
   cloudPlatformHandle = osThreadNew(StartTask02, NULL, &cloudPlatform_attributes);
 
+  /* creation of pawlTask */
+  pawlTaskHandle = osThreadNew(StartTask03, NULL, &pawlTask_attributes);
+
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
@@ -133,22 +147,27 @@ void MX_FREERTOS_Init(void) {
 /* USER CODE END Header_StartDefaultTask */
 void StartDefaultTask(void *argument)
 {
-  static uint8_t flag;
   /* USER CODE BEGIN StartDefaultTask */
-  /* Infinite loop */
+	static uint8_t stableDetection=0;
+  /* 无限循环 */
   for(;;)
   {
-    Detection=isFull();
-    if(Detection!=0)
-    {
-      flag++;
-      if(flag>=5)
-      {
-        printf("{\"operation\":\"0\",\"isFull\":%d}",Detection);
-        flag=0;
-      }
-    }
-    vTaskDelay(300);
+    // Detection = isFull();
+    // if (Detection != 0)
+    // {
+    //   if (++stableDetection >= 5)  // �??要连�??5次检测到“满”状�??
+    //   {
+    //       printf("{\"operation\":\"0\",\"isFull\":%d}", Detection);
+		// 			stableDetection = 0;
+    //   }
+    // }
+    // else
+    // {
+    //   stableDetection = 0;  // 如果未检测到“满”，则重置稳定检测计�??
+    // }
+
+    vTaskDelete(NULL);
+
   }
   /* USER CODE END StartDefaultTask */
 }
@@ -168,15 +187,34 @@ void StartTask02(void *argument)
   {
     //等待视觉发�?�识别信息再启动分类
     //connect.c->串口接收中断发�??
-      //ulTaskNotifyTake(pdTRUE,portMAX_DELAY ) ;
       osThreadFlagsWait(0x01,osFlagsWaitAny,osWaitForever);
-        receive(Info);
-        {
-          dumpTrash(Info);
-          printf("{\"operation\":\"1\",\"isFull\":%d}",Detection);
-        } 
+      receive(Info);
+      {
+        dumpTrash(Info);
+        vTaskDelay(800);
+        dumpReset(top,bottom);
+        printf("{\"operation\":\"1\",\"isFull\":%d}",Detection);
+      } 
   }
   /* USER CODE END StartTask02 */
+}
+
+/* USER CODE BEGIN Header_StartTask03 */
+/**
+* @brief Function implementing the pawlTaskHandle thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_StartTask03 */
+void StartTask03(void *argument)
+{
+  /* USER CODE BEGIN StartTask03 */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END StartTask03 */
 }
 
 /* Private application code --------------------------------------------------*/

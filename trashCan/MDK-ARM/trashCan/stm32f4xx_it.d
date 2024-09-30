@@ -31,4 +31,6 @@ trashcan\stm32f4xx_it.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_e
 trashcan\stm32f4xx_it.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 trashcan\stm32f4xx_it.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 trashcan\stm32f4xx_it.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
+trashcan\stm32f4xx_it.o: ../Core/Inc/trashCanConfig.h
+trashcan\stm32f4xx_it.o: ../Core/Inc/main.h
 trashcan\stm32f4xx_it.o: ../Core/Inc/stm32f4xx_it.h

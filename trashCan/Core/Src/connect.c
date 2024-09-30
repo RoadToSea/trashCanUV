@@ -66,7 +66,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
     {
         if(ReceiveBuf==endFlag)
         {
-			memcpy(DATA,ReceiveArray,ReceiveIndex);
+						memcpy(DATA,ReceiveArray,ReceiveIndex);
             memset(ReceiveArray,0,ArraySize);
             copyFlag=0;
             ReceiveIndex=0; 

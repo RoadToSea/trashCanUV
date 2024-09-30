@@ -31,6 +31,8 @@ trashcan\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
 trashcan\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 trashcan\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 trashcan\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
+trashcan\main.o: ../Core/Inc/trashCanConfig.h
+trashcan\main.o: ../Core/Inc/main.h
 trashcan\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os.h
 trashcan\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
 trashcan\main.o: ../Core/Inc/FreeRTOSConfig.h
@@ -48,5 +50,6 @@ trashcan\main.o: ../Core/Inc/gpio.h
 trashcan\main.o: D:\keil5\ARM\ARMCC\Bin\..\include\stdio.h
 trashcan\main.o: ../Core/Inc/steer.h
 trashcan\main.o: ../Core/Inc/connect.h
-trashcan\main.o: ../Core/Inc/trashCanConfig.h
 trashcan\main.o: ../Core/Inc/SR04.h
+trashcan\main.o: ../Core/Inc/control.h
+trashcan\main.o: ../Core/Inc/motor.h

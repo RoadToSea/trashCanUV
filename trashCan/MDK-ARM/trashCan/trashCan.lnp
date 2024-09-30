@@ -6,6 +6,7 @@
 "trashcan\cjson.o"
 "trashcan\cjson_utils.o"
 "trashcan\control.o"
+"trashcan\motor.o"
 "trashcan\main.o"
 "trashcan\gpio.o"
 "trashcan\freertos.o"

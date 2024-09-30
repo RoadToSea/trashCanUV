@@ -33,6 +33,7 @@ trashcan\control.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 trashcan\control.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 trashcan\control.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 trashcan\control.o: ../Core/Inc/trashCanConfig.h
+trashcan\control.o: ../Core/Inc/main.h
 trashcan\control.o: ../Core/Inc/steer.h
 trashcan\control.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
 trashcan\control.o: ../Core/Inc/FreeRTOSConfig.h
@@ -44,3 +45,4 @@ trashcan\control.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrapp
 trashcan\control.o: ../Core/Inc/SR04.h
 trashcan\control.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h
 trashcan\control.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
+trashcan\control.o: ../Core/Inc/tim.h
